@@ -53,15 +53,15 @@ class Game(db.Model):
     game_name = db.Column(db.String(150), nullable = False)
     game_genre = db.Column(db.String(200))
     game_rating = db.Column(db.String(20))
-    game_grade = db.Column(db.String(200))
+    game_image = db.Column(db.String(500))
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
-    def __init__(self, game_name, game_genre, game_rating, game_grade, user_token, id = ''):
+    def __init__(self, game_name, game_genre, game_rating, game_image, user_token, id = ''):
         self.id = self.set_id()
         self.game_name = game_name
         self.game_genre = game_genre
         self.game_rating = game_rating
-        self.game_grade = game_grade
+        self.game_image = game_image
         self.user_token = user_token
 
 
@@ -73,7 +73,7 @@ class Game(db.Model):
 
 class GameSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'game_name','game_genre','game_rating', 'game_grade']
+        fields = ['id', 'game_name','game_genre','game_rating', 'game_image']
 
 game_schema = GameSchema()
 games_schema = GameSchema(many=True)

@@ -9,7 +9,7 @@ def getdata():
     return {'game name': 'super mario bros.',
             'game genre': 'side scroller',
             'game rating' : 'E',
-            'game grade' : 'Awesome'
+            'game image' : 'https://www.google.com/imgres?q=mario%20party%203&imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fen%2F1%2F19%2FMarioparty3.jpg&imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FMario_Party_3&docid=cLjGK1ZAtzZW5M&tbnid=KYstIKISmac-HM&vet=12ahUKEwjU05LRi6SFAxVPSjABHSdWDO4QM3oECBgQAA..i&w=256&h=178&hcb=2&ved=2ahUKEwjU05LRi6SFAxVPSjABHSdWDO4QM3oECBgQAA'
             }
     
 @api.route('/inventory', methods = ['POST'])
@@ -18,12 +18,12 @@ def create_game(current_user_token):
     game_name = request.json['game_name']
     game_genre = request.json['game_genre']
     game_rating = request.json['game_rating']
-    game_grade = request.json['game_grade']
+    game_image = request.json['game_image']
     user_token = current_user_token.token
 
     print(f'BIG TESTER: {current_user_token.token}')
 
-    game = Game(game_name, game_genre, game_rating, game_grade, user_token = user_token )
+    game = Game(game_name, game_genre, game_rating, game_image, user_token = user_token )
 
     db.session.add(game)
     db.session.commit()
@@ -53,7 +53,7 @@ def update_game(current_user_token,id):
     game.game_name = request.json['game_name']
     game.game_genre = request.json['game_genre']
     game.game_rating = request.json['game_rating']
-    game.game_grade = request.json['game_grade']
+    game.game_image = request.json['game_image']
     game.user_token = current_user_token.token
 
     db.session.commit()
